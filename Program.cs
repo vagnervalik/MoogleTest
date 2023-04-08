@@ -1,5 +1,11 @@
-﻿class Program{
+﻿using System;
+using System.IO;
+namespace Classes;
+
+class Program{
     static void Main(){
-        Console.WriteLine("Hello World");
+        DataBase Docs = new DataBase("Content");
+        Console.WriteLine("Database loaded!");
+        Console.WriteLine(Docs.Count());
     }
 }

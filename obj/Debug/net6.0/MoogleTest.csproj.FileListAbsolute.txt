@@ -1,0 +1,15 @@
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\bin\Debug\net6.0\MoogleTest.exe
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\bin\Debug\net6.0\MoogleTest.deps.json
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\bin\Debug\net6.0\MoogleTest.runtimeconfig.json
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\bin\Debug\net6.0\MoogleTest.dll
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\bin\Debug\net6.0\MoogleTest.pdb
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\obj\Debug\net6.0\MoogleTest.csproj.AssemblyReference.cache
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\obj\Debug\net6.0\MoogleTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\obj\Debug\net6.0\MoogleTest.AssemblyInfoInputs.cache
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\obj\Debug\net6.0\MoogleTest.AssemblyInfo.cs
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\obj\Debug\net6.0\MoogleTest.csproj.CoreCompileInputs.cache
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\obj\Debug\net6.0\MoogleTest.dll
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\obj\Debug\net6.0\refint\MoogleTest.dll
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\obj\Debug\net6.0\MoogleTest.pdb
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\obj\Debug\net6.0\MoogleTest.genruntimeconfig.cache
+C:\Users\Vagner Valik\Documents\Moogle Test\MoogleTest\obj\Debug\net6.0\ref\MoogleTest.dll
