@@ -1,18 +1,18 @@
 namespace Classes;
 
 class DataBase{
-    private string address;
-    private string[] AllText;
-    private string[][] Docs;
-    private string[] AllWords;
-
+    private string address;    //URL FOR THE DATABASE.
+    private string[] AllText;  //ALL THE TEXT FROM EACH DOCUMENT.
+    private string[][] Docs;   //ALL THE TEXT FROM EACH DOCUMENT SEPARATED INTO WORDS.
+    private string[] AllWords; //ALL THE WORDS FROM ALL DOCUMENTS IN TOTAL.
+    //CONSTRUCTOR
     public DataBase(string address){
         this.address = address;
         this.AllText = this.LoadDataBase();
         this.Docs = this.GetWords();
         this.AllWords = this.GetAllWords();
     } 
-
+    //CONSTRUCTOR AID FOR THE FIELD AllText. RETURNS AN ARRAY WITH THE TEXT OF ALL DOCUMENTS IN THE FORM OF STRINGS.
     public string[] LoadDataBase(){
         string[] Files = Directory.GetFiles(address);
         string[] AllFiles = new String[Files.Length];
@@ -21,7 +21,7 @@ class DataBase{
         }
         return AllFiles;
     }
-
+    //CONSTRUCTOR AID FOR THE FIELD Docs. RETURNS ALL THE WORDS OF EACH DOCUMENT IN THE FORM OF A STRING ARRAY.
     public string[][] GetWords(){
         char[] chars = new char[]{' ', ',', '.', '`', '!', '~', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '+', '=', '{', '}', '[', ']', ':', ';', '"', '\'', '\\', '|', '<', '>', '?', '/', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\r' , '\n'};
         List<string[]> AllWords = new List<string[]>();
@@ -31,7 +31,7 @@ class DataBase{
         string[][] Words = AllWords.ToArray();
         return Words;
     }
-
+    //CONSTRUCTOR AID FOR THE FIELD AllWords. RETURNS ALL THE WORDS FROM ALL THE DOCUMENTS WITHOUT DUPLICATES.
     public string[] GetAllWords(){
         List<string> wrds= new List<string>();
         bool isNew = true;
@@ -51,34 +51,19 @@ class DataBase{
         }
         return wrds.ToArray();
     }
-
-    public void DisplayAllWords(){
-        int i = 1;
-        foreach(string word in this.AllWords){
-            Console.Write(i + ": " + word + "   ");
-            if (i > 100){
-                break;
-            }
-            i++;
-
-        }
+    //DISPLAYS THE FIELD AllWords FOR DEBUGGING PORPOSES.
+    public int TotalWords(){
+        return this.AllWords.Length;
     }
-
-    public void Display(int pos){
-        if (pos > this.Get(pos).Length || pos < 0){
-            throw new ArgumentException("Index must be inside the bounds of the array");
-        }
-        int i = 1;
-        foreach(string word in this.Get(pos)){
-            Console.Write(i + " = " + $"'{word}'" + "   ");
-            i++;
-        }
+    //DISPLAYS ALL THE WORDS IN A DOCUMENT BASED ON A GIVEN INDEX FOR DEBUGGING PROPOSES.
+    public int TotalWords(int pos){
+       return this.Get(pos).Length;
     }
-
+    //RETURNS ALL THE WORDS IN A DOCUMENTS BASED ON A GIVEN INDEX.
     public string[] Get(int pos){
         return this.Docs[pos];
     }
-
+    //RETURNS THE NUMBER OF DOCUMENTS AT THE DATABASE FOLDER.
     public int Count(){
         return this.AllText.Length;
     }
