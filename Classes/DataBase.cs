@@ -31,12 +31,16 @@ class DataBase{
     }
 
     public void Display(int pos){
+        if (pos > this.Get(pos).Length){
+            throw new ArgumentException("Index must be inside the bounds of the array");
+        }
         int i = 1;
         foreach(string word in this.Get(pos)){
             Console.Write(i + " = " + $"'{word}'" + "   ");
             i++;
         }
     }
+
     public string[] Get(int pos){
         return this.Docs[pos];
     }
