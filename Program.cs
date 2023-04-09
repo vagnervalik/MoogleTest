@@ -7,5 +7,6 @@ class Program{
         DataBase Docs = new DataBase("Content");
         Console.WriteLine("Database loaded!");
         Console.WriteLine(Docs.Count());
+        Docs.Display(4);
     }
 }
