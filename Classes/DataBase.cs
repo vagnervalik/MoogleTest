@@ -21,7 +21,7 @@ class DataBase{
         }
         return AllFiles;
     }
-    //CONSTRUCTOR AID FOR THE FIELD Docs. RETURNS ALL THE WORDS OF EACH DOCUMENT IN THE FORM OF A STRING ARRAY.
+    //CONSTRUCTOR AID FOR THE FIELD Docs. RETURNS ALL THE WORDS FROM EACH DOCUMENT IN THE FORM OF A STRING ARRAY.
     public string[][] GetWords(){
         char[] chars = new char[]{' ', ',', '.', '`', '!', '~', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '+', '=', '{', '}', '[', ']', ':', ';', '"', '\'', '\\', '|', '<', '>', '?', '/', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\r' , '\n'};
         List<string[]> AllWords = new List<string[]>();
@@ -51,13 +51,16 @@ class DataBase{
         }
         return wrds.ToArray();
     }
-    //DISPLAYS THE FIELD AllWords FOR DEBUGGING PORPOSES.
-    public int TotalWords(){
+    //RETURNS THE TOTAL COUNT OF THE WORDS FROM ALL DOCUMENTS.
+    public int NumOfWords(){
         return this.AllWords.Length;
     }
-    //DISPLAYS ALL THE WORDS IN A DOCUMENT BASED ON A GIVEN INDEX FOR DEBUGGING PROPOSES.
-    public int TotalWords(int pos){
-       return this.Get(pos).Length;
+    public int NumOfWords(int pos){
+        return this.Docs[pos].Length;
+    }
+    //RETURNS AN ARRAY WITH ALL THE WORDS FROM ALL DOCUMENTS WITHOUT DUPLICATES.
+    public string[] Vocabulary(){
+       return this.AllWords;
     }
     //RETURNS ALL THE WORDS IN A DOCUMENTS BASED ON A GIVEN INDEX.
     public string[] Get(int pos){
