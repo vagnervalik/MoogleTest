@@ -4,8 +4,9 @@ namespace Classes;
 
 class Program{
     static void Main(){
-        DataBase Docs = new DataBase("Content");
-        TestDataBase(Docs);
+        // DataBase Docs = new DataBase("Content");
+        // TestDataBase(Docs);
+        TestTokens(new string[]{"casa", "perro", "gente", "persona", "a", "de", "desde"});
     }
     static void TestDataBase(DataBase Docs){
         Console.WriteLine("Database loaded!");
@@ -26,6 +27,21 @@ class Program{
                 Console.Write(j + ": " + Docs.Get(i)[j] + "   ");
             }
             Console.WriteLine("");
+        }
+    }
+    static void TestTokens(string[] s){
+        string[] tokens = s;
+        List<Token> all = new List<Token>();
+        foreach(string w in tokens){
+            all.Add(new Token(w));
+        }
+        int i = 0;
+        foreach(Token t in all){
+            Console.WriteLine("\"" + tokens[i] + "\"");
+            t.GetValue();
+            t.GetToken();
+            Console.WriteLine("*******************************");
+            i++;
         }
     }
 }

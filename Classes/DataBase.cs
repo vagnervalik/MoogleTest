@@ -13,7 +13,7 @@ class DataBase{
         this.AllWords = this.GetAllWords();
     } 
     //CONSTRUCTOR AID FOR THE FIELD AllText. RETURNS AN ARRAY WITH THE TEXT OF ALL DOCUMENTS IN THE FORM OF STRINGS.
-    public string[] LoadDataBase(){
+    private string[] LoadDataBase(){
         string[] Files = Directory.GetFiles(address);
         string[] AllFiles = new String[Files.Length];
         for (int i = 0; i < Files.Length; i++){
@@ -22,7 +22,7 @@ class DataBase{
         return AllFiles;
     }
     //CONSTRUCTOR AID FOR THE FIELD Docs. RETURNS ALL THE WORDS FROM EACH DOCUMENT IN THE FORM OF A STRING ARRAY.
-    public string[][] GetWords(){
+    private string[][] GetWords(){
         char[] chars = new char[]{' ', ',', '.', '`', '!', '~', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '+', '=', '{', '}', '[', ']', ':', ';', '"', '\'', '\\', '|', '<', '>', '?', '/', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\r' , '\n'};
         List<string[]> AllWords = new List<string[]>();
         for (int i = 0; i < this.Count(); i++){
@@ -32,7 +32,7 @@ class DataBase{
         return Words;
     }
     //CONSTRUCTOR AID FOR THE FIELD AllWords. RETURNS ALL THE WORDS FROM ALL THE DOCUMENTS WITHOUT DUPLICATES.
-    public string[] GetAllWords(){
+    private string[] GetAllWords(){
         List<string> wrds= new List<string>();
         bool isNew = true;
         for (int i = 0; i < this.Count(); i++){
