@@ -6,7 +6,7 @@ class Program{
     static void Main(){
         // DataBase Docs = new DataBase("Content");
         // TestDataBase(Docs);
-        TestTokens(new string[]{"casa", "perro", "gente", "persona", "a", "de", "desde"});
+        // TestTokens(new string[]{"casa", "perro", "gente", "persona", "a", "de", "desde"});
     }
     static void TestDataBase(DataBase Docs){
         Console.WriteLine("Database loaded!");
