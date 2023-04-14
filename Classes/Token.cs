@@ -1,13 +1,13 @@
 namespace Classes;
 
-class Token{
-    private Dictionary<char, int> chars;
-    private string token;
-    public Token(string word){
-        this.chars = this.MakeDictionary();
-        this.token = word;
-    }
-    private Dictionary<char, int> MakeDictionary(){
+    class Token{
+       private Dictionary<char, int> chars;
+       private string token;
+       public Token(string word){
+           this.chars = this.MakeDictionary();
+           this.token = word;
+       }
+       private Dictionary<char, int> MakeDictionary(){
         Dictionary<char, int> chars = new Dictionary<char, int>();
         int value = 1;
         char[] vowels = new char[]{ 'a', 'á', 'à', 'â', 'ä', 'ã', 'å', 'A', 'Á', 'À', 'Â', 'Ä', 'Ã', 'Å', 'e', 'é', 'è', 'ê', 'ë', 'E', 'É', 'È', 'Ê', 'Ë', 'i', 'í', 'ì', 'î', 'ï', 'I', 'Í', 'Ì', 'Î', 'Ï', 'o', 'ó', 'ò', 'ô', 'ö', 'õ', 'ø','O','Ó','Ò','Ô','Ö','Õ','Ø', 'u','ú','ù','û','ü','U','Ú','Ù','Û','Ü'};
@@ -25,5 +25,24 @@ class Token{
             i++;
         }
         return chars;
+       }
+
+       private int Size(){
+           return this.token.Length;
+       }
+    public string Get(){
+        return this.token;
     }
-}
+       public char Get(int pos){
+           return this.token[pos];
+       }
+
+       public bool isHigherThan(Token x){
+        for(int i = 0;i < Math.Min(x.Size(), this.Size());i++){
+            if(this.Get(i) > x.Get(i)){
+                return true;
+            }
+        }
+        return false;
+       }
+    }
