@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 namespace Classes;
 
 class DataBase{
@@ -26,10 +27,9 @@ class DataBase{
 
     //CONSTRUCTOR AID FOR THE FIELD Docs. RETURNS ALL THE WORDS FROM EACH DOCUMENT IN THE FORM OF A STRING ARRAY.
     private string[][] GetWords(){
-        char[] chars = new char[]{' ', ',', '.', '`', '!', '~', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '+', '=', '{', '}', '[', ']', ':', ';', '"', '\'', '\\', '|', '<', '>', '?', '/', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\r' , '\n'};
         List<string[]> AllWords = new List<string[]>();
         for (int i = 0; i < this.Count(); i++){
-            AllWords.Add(this.AllText[i].Trim(chars).Split(chars, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries));
+            AllWords.Add(Regex.Split(this.AllText[i].ToLower(), "[^a-zA-Z]+").Where(x => !string.IsNullOrEmpty(x)).ToArray());
         }
         string[][] Words = AllWords.ToArray();
         return Words;
@@ -38,22 +38,16 @@ class DataBase{
     //CONSTRUCTOR AID FOR THE FIELD AllWords. RETURNS ALL THE WORDS FROM ALL THE DOCUMENTS WITHOUT DUPLICATES.
     private string[] GetAllWords(){
         List<string> wrds= new List<string>();
-        bool isNew = true;
-        for (int i = 0; i < this.Count(); i++){
+        for(int i = 0; i < this.Count(); i++){
             for(int j = 0; j < this.Get(i).Length; j++){
-                isNew = true;
-                for(int k = j-1; k >= 0; k--){
-                    if(this.Get(i)[j] == this.Get(i)[k]){
-                        isNew = false;
-                        break;
-                    }
-                }
-                if (isNew){
+                if(!(wrds.Contains(this.Get(i)[j]))){
                     wrds.Add(this.Get(i)[j]);
                 }
             }
         }
-        return wrds.ToArray();
+        string[] words = wrds.ToArray();
+        Array.Sort(words);
+        return words;
     }
     
     //RETURNS THE TOTAL COUNT OF THE WORDS FROM ALL DOCUMENTS.
@@ -79,5 +73,11 @@ class DataBase{
     //RETURNS THE NUMBER OF DOCUMENTS AT THE DATABASE FOLDER.
     public int Count(){
         return this.AllText.Length;
+    }
+
+    public void DisplayVoc(){
+        for(int i = 0; i < 100; i++){
+            Console.Write($"{this.Get(0)[i]}   ");
+        }
     }
 }

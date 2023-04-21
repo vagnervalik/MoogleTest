@@ -1,9 +1,15 @@
 namespace Classes;
 
 class Vector{
-    private TokenArr tokens;
-    private int[] vector;
-    public Vector(string[] words){
-        this.tokens = new TokenArr(words);
+    private string[] words;
+    private float[] vector;
+
+    public Vector(string[] words, Vector Idfs){
+        this.words = words;
+        this.vector = this.Vectorize();
     }
+
+    public float[] Vectorize(){
+        throw new NotImplementedException();
+    } 
 }

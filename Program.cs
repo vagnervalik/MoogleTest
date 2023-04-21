@@ -1,17 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 namespace Classes;
 
 class Program{
     static void Main(){
-        // DataBase Docs = new DataBase("Content");
-        // TestDataBase(Docs);
-        // TestTokens(new string[]{"casa", "perro", "gente", "persona", "a", "de", "desde"});
-        string[] words = {"casa", "kaka", "cocina", "popo"};
-        TokenArr tokens = new TokenArr(words);
-        tokens.Display();
-    }
-    static void TestDataBase(DataBase Docs){
+        DataBase Docs = new DataBase("Content");
+        TestDataBase(Docs);
+        static void TestDataBase(DataBase Docs){
         Console.WriteLine("Database loaded!");
         Console.WriteLine("Total Documents: " + Docs.Count());
         Console.WriteLine("Total Words: " + Docs.NumOfWords());
@@ -19,7 +15,7 @@ class Program{
             Console.WriteLine("No. of words in Doc" + i + ": " + Docs.NumOfWords(i));
         }
         Console.WriteLine("Vocabulary");
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 100; i++){
             Console.Write(i + ": " + Docs.Vocabulary()[i] + "   ");
         }
         Console.WriteLine("");
@@ -30,6 +26,7 @@ class Program{
                 Console.Write(j + ": " + Docs.Get(i)[j] + "   ");
             }
             Console.WriteLine("");
+        }
         }
     }
 }
