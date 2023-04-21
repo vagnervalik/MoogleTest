@@ -74,10 +74,4 @@ class DataBase{
     public int Count(){
         return this.AllText.Length;
     }
-
-    public void DisplayVoc(){
-        for(int i = 0; i < 100; i++){
-            Console.Write($"{this.Get(0)[i]}   ");
-        }
-    }
 }
