@@ -5,7 +5,7 @@ class Matrix{
     private float[] Idfs;
     private string[] voc;
     private Vector[] matrix;
-    private Dictionary<string, Dictionary<int, (float tf_idf, float tf) >> Dict;
+    private Dictionary<string, Dictionary<int, (float tf_idf, float tf)>> Dict;
 
     public Matrix(DataBase Docs){
         this.Docs = Docs;

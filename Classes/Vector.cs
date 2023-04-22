@@ -41,4 +41,17 @@ class Vector{
         }
         Console.WriteLine();
     }
+    public int Size(){
+        return this.vector.Length;
+    }
+    public float Multiply(Vector V){
+        if (this.Size() != V.Size()){
+            throw new ArgumentException("Vector must be {0} elements long", this.Size());
+        }
+        float count = 0f;
+        for(int i = 0; i < this.Size(); i++){
+            count += this.vector[i] * V[i];
+        }
+        return count;
+    }
 }
