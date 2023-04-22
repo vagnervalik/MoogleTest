@@ -5,29 +5,36 @@ class Vector{
     private string[] words;
     private string[] voc;
     private float[] idfs;
+    private float[] tfs;
     private float[] vector;
 
     public Vector(string[] words, string[] vocabulary, float[] Idfs){
         this.words = words;
         this.voc = vocabulary;
         this.idfs = Idfs;
-        this.vector = this.Vectorize();
+        var result = this.Vectorize();
+        this.vector = result.Item1;
+        this.tfs = result.Item2;
     }
 
-    public float[] Vectorize(){
+    public (float[],float[]) Vectorize(){
         float[] tfidf = new float[this.idfs.Length];
+        float[] tf = new float[this.idfs.Length];
         float count = 0f;
         for(int i = 0; i < this.idfs.Length; i++){
             count = this.words.Count(x => x == this.voc[i]);
             tfidf[i] = (count/Convert.ToSingle(this.words.Length)) * this.idfs[i];
+            tf[i] = (count/Convert.ToSingle(this.words.Length));
         }
-        return tfidf;
+        return (tfidf, tf);
     } 
 
-    public float[] Get(){
+    public float[] GetTfidf(){
         return this.vector;
     }
-
+    public float[] GetTf(){
+        return this.tfs;
+    }
     public void Display(){
         for(int i = 0; i < 10; i++){
             Console.Write(this.vector[i] + ",    ");

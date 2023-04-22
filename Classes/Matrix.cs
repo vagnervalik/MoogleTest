@@ -5,12 +5,14 @@ class Matrix{
     private float[] Idfs;
     private string[] voc;
     private Vector[] matrix;
+    private Dictionary<string, Dictionary<int, (float tf_idf, float tf) >> Dict;
 
     public Matrix(DataBase Docs){
         this.Docs = Docs;
         this.voc = this.Docs.Vocabulary();
         this.Idfs = this.GetIdfs();
         this.matrix = this.GetMatrix();
+        this.Dict = this.GetDictionary();
     }
 
     public float[] GetIdfs(){
@@ -52,5 +54,24 @@ class Matrix{
 
     public Vector[] Get(){
         return this.matrix;
+    }
+
+    public Dictionary<string, Dictionary<int, (float tf_idf, float tf) >> GetDictionary(){
+        Dictionary<string, Dictionary<int, (float tf_idf, float tf)>> Dict = new Dictionary<string, Dictionary<int, (float tf_idf, float tf)>>();
+        for(int i = 0; i < this.voc.Length; i++){
+            Dict.Add(this.voc[i], new Dictionary<int, (float tf_idf, float tf)>());
+            for(int j = 0; j < this.Docs.Count(); j++){
+                Dict[this.voc[i]].Add(j, (this.matrix[j].GetTfidf()[i], this.matrix[j].GetTf()[i]));
+            }
+        }
+        return Dict;
+    }        
+    
+    public float[] score(string query){
+        float[] scores = new float[this.Docs.Count()];
+        for(int i = 0; i < this.Docs.Count(); i++){
+            scores[i] = this.Dict[query][i].tf_idf;
+        }
+        return scores;
     }
 }

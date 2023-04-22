@@ -5,6 +5,7 @@ namespace Classes;
 
 class Program{
     static void Main(){
+        Console.WriteLine("Cargando...");
         int stTime = Environment.TickCount;
         DataBase Docs = new DataBase("Content");
         Matrix M = new Matrix(Docs);
@@ -18,6 +19,10 @@ class Program{
         foreach(Vector v in M.Get()){
             v.Display();
         }
+        TestDataBase(Docs);
+        foreach(float f in M.score("bear")){
+            Console.Write("\n" + f + ",    ");
+        }
         Console.WriteLine("\n Time elapsed: {0} seconds", (Environment.TickCount - stTime)/1000);
         static void TestDataBase(DataBase Docs){
         Console.WriteLine("Database loaded!");
@@ -27,7 +32,7 @@ class Program{
             Console.WriteLine("No. of words in Doc" + i + ": " + Docs.NumOfWords(i));
         }
         Console.WriteLine("Vocabulary");
-        for (int i = 23482; i < 23682; i++){
+        for (int i = 0; i < 50; i++){
             Console.Write(i + ": " + Docs.Vocabulary()[i] + "   ");
         }
         Console.WriteLine("");
