@@ -74,4 +74,19 @@ class Matrix{
         }
         return scores;
     }
+
+    public (string[], float[])  GetScores(Vector query){
+        float[] scores = new float[this.matrix.Length];
+        string[] files = new string[this.Docs.Count()];
+        for(int i = 0; i < this.Docs.Count(); i++){
+            files[i] = this.Docs.FileNames()[i];
+        }
+        for(int i = 0; i < this.matrix.Length; i++){
+            scores[i] = query.Multiply(this.matrix[i]);
+        }
+        Array.Sort(scores, files);
+        Array.Reverse(scores);
+        Array.Reverse(files);
+        return (files, scores);
+    }
 }

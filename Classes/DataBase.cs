@@ -2,15 +2,17 @@ using System.Text.RegularExpressions;
 namespace Classes;
 
 class DataBase{
-    private string address;    //URL FOR THE DATABASE.
-    private string[] AllText;  //ALL THE TEXT FROM EACH DOCUMENT.
-    private string[][] Docs;   //ALL THE TEXT FROM EACH DOCUMENT SEPARATED INTO WORDS.
-    private string[] AllWords; //ALL THE WORDS FROM ALL DOCUMENTS IN TOTAL.
+    private string address;     //URL FOR THE DATABASE.
+    private string[] AllText;   //ALL THE TEXT FROM EACH DOCUMENT.
+    private string[] fileNames; //ALL THE FILE NAMES.
+    private string[][] Docs;    //ALL THE TEXT FROM EACH DOCUMENT SEPARATED INTO WORDS.
+    private string[] AllWords;  //ALL THE WORDS FROM ALL DOCUMENTS IN TOTAL.
 
     //CONSTRUCTOR
     public DataBase(string address){
         this.address = address;
         this.AllText = this.LoadDataBase();
+        this.fileNames = this.GetFileNames();
         this.Docs = this.GetWords();
         this.AllWords = this.GetAllWords();
     } 
@@ -23,6 +25,14 @@ class DataBase{
             AllFiles[i] = File.ReadAllText(Files[i]);
         }
         return AllFiles;
+    }
+
+    private string[] GetFileNames(){
+        string[] fileNames = new string[this.Count()];
+        for(int i = 0; i < this.Count(); i++){
+            fileNames[i] = Path.GetFileName(Directory.GetFiles(this.address)[i]);
+        }
+        return fileNames;
     }
 
     //CONSTRUCTOR AID FOR THE FIELD Docs. RETURNS ALL THE WORDS FROM EACH DOCUMENT IN THE FORM OF A STRING ARRAY.
@@ -73,5 +83,9 @@ class DataBase{
     //RETURNS THE NUMBER OF DOCUMENTS AT THE DATABASE FOLDER.
     public int Count(){
         return this.AllText.Length;
+    }
+
+    public string[] FileNames(){
+        return this.fileNames;
     }
 }

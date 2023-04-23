@@ -1,11 +1,12 @@
 using System.Linq;
+using System.Text.RegularExpressions;
 namespace Classes;
 
 class Vector{
     private string[] words;
     private string[] voc;
-    private float[] idfs;
-    private float[] tfs;
+    private float[]? idfs;
+    private float[]? tfs;
     private float[] vector;
 
     public Vector(string[] words, string[] vocabulary, float[] Idfs){
@@ -15,6 +16,27 @@ class Vector{
         var result = this.Vectorize();
         this.vector = result.Item1;
         this.tfs = result.Item2;
+    }
+
+    public Vector(string words, string[] vocabulary){
+        this.words = this.GetWords(words);
+        this.voc = vocabulary;
+        this.vector = this.GetQueryVector();
+    }
+
+    public string[] GetWords(string words){
+        string[] W = Regex.Split(words.ToLower(), "[^a-zA-Z]+").Where(x => !string.IsNullOrEmpty(x)).ToArray();
+        return W;
+    }
+
+    public float[] GetQueryVector(){
+        float[] query = new float[this.voc.Length];
+        int val = 0;
+        for(int i = 0; i < this.voc.Length; i++){
+            val = (Array.Exists(this.words, x => x == this.voc[i])) ? 1 : 0;
+            query[i] = val;
+        }
+        return query;
     }
 
     public (float[],float[]) Vectorize(){
@@ -46,11 +68,11 @@ class Vector{
     }
     public float Multiply(Vector V){
         if (this.Size() != V.Size()){
-            throw new ArgumentException("Vector must be {0} elements long", this.Size());
+            throw new ArgumentException($"Vector must be the same size");
         }
         float count = 0f;
         for(int i = 0; i < this.Size(); i++){
-            count += this.vector[i] * V[i];
+            count += this.vector[i] * V.GetTfidf()[i];
         }
         return count;
     }
